@@ -1,0 +1,49 @@
+# This file is in AT&T syntax - see http://www.imada.sdu.dk/Courses/DM18/Litteratur/IntelnATT.htm
+# and http://en.wikipedia.org/wiki/X86_assembly_language#Syntax. Both gdb and objdump produce
+# AT&T syntax by default.
+MOV $20513,%ebx
+MOV $7660,%eax
+MOV $7481,%ecx
+CMP %eax,%ebx
+JL L1
+JMP L2
+L1:
+IMUL %eax,%ebx
+ADD %eax,%ebx
+MOV %ebx,%eax
+SUB %ecx,%eax
+JMP L3
+L2:
+IMUL %eax,%ebx
+SUB %eax,%ebx
+MOV %ebx,%eax
+ADD %ecx,%eax
+L3:
+NOP
+
+
+>MOV $20513,%ebx
+>MOV $7660,%eax
+>MOV $7481,%ecx
+
+ebx = 20513
+eax = 7660
+ecx = 7481
+
+>CMP %eax,%ebx
+ebx > eax , JMP L2
+>IMUL %eax,%ebx
+ebx = eax * ebx 
+ebx = 7660 * 20513
+ebx = 157129580
+>SUB %eax,%ebx
+ebx = ebx - eax
+ebx = 157129580 - 7660
+ebx = 157121920
+>MOV %ebx,%eax
+eax = ebx 
+eax = 157121920
+>ADD %ecx,%eax
+eax = eax + ecx 
+eax = 157121920 + 7481
+eax = 157129401
